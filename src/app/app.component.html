@@ -8,14 +8,14 @@
   <label for="fname">username:</label><br>
   <input type="text" id="fname" name="fname" [(ngModel)]="username"><br>
   <label for="lname">password:</label><br>
-  <input type="text" id="lname" name="lname" [(ngModel)]="password"><br><br>
+  <input type="password" id="lname" name="lname" [(ngModel)]="password"><br><br>
 
   <button (click)="login()"> login</button>
+  <button (click)="addProduct()"> apple</button>
+  <button (click)="getReceipt()"> getreceipt</button>
+  {{basketId}}
+  {{userId}}
 </form>
-
-<!--{{data}}-->
-<!--<p [(ngModel)]="data"></p>-->
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let element of data">
+    <tr *ngFor="let element of products">
 
       <td>{{element.name}}</td>
       <td>{{element.type}}</td>
@@ -36,6 +36,9 @@
   </tbody>
 </table>
 
+
+
+{{receipt}}
 </body>
 </html>
 

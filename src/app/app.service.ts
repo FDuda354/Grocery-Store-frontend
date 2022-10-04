@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {Product} from "./app.component";
+import {Basket, Product, Receipt, User} from "./app.component";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -21,20 +21,34 @@ export class AppService {
     return this.http.post('http://localhost:8080/users/login', payload)
   }
 
-  // getData(token: string) {
-  //    this.header = this.header.set('Authorization', 'Bearer ' + token);
-  //   return this.http.get('http://localhost:8080/users/all', {'headers': this.header});
-  // }
 
-  //TODO: do wyjebania
-  // getData(token: string) {
-  //   this.header = this.header.set('Authorization', 'Bearer ' + token);
-  //   return this.http.get('http://localhost:8080/shop/products', {'headers': this.header});
-  // }
 
-  getData(token: string): Observable<Product[]> {
+  getBasketId(token: string, userId: string): Observable<User>{
     this.header = this.header.set('Authorization', 'Bearer ' + token);
-    return this.http.get<Product[]>('http://localhost:8080/shop/products', {'headers': this.header});
+    console.log(token);
+    return this.http.get<User>('http://localhost:8080/users/?id='+userId, {'headers': this.header});
+
+  }
+
+
+  addProduct(token: string): Observable<Basket> {
+    this.header = this.header.set('Authorization', 'Bearer ' + token);
+    console.log(token);
+
+    return this.http.post<Basket>('http://localhost:8080/shop/product?basketId=8&name=Bread', {'headers': this.header});
+  }
+///asd
+
+  getReceipt(token: string): Observable<Receipt> {
+    this.header = this.header.set('Authorization', 'Bearer ' + token);
+    console.log(token);
+
+    return this.http.get<Receipt>('http://localhost:8080/shop/receipt?basketId=8', {'headers': this.header});
+
+  }
+
+  addProductTest( token: string) {
+    return this.http.post('http://localhost:8080/shop/product?basketId=8&name=Bread', {'headers': this.header});
   }
 
 
