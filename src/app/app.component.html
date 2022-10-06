@@ -129,6 +129,12 @@
 
 
     }
+    #viev
+    {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
 
     /* Modal Content/Box */
     .modal-content {
@@ -185,11 +191,11 @@
 </head>
 <body>
 <div id = "kontener">
-<h2>Welcome to Grocery Store</h2>
+<h2 style="text-align: center">Welcome to Grocery Store</h2>
 
 
 <!-- Button to open the modal login form -->
-<div *ngIf="!isLogin">
+<div *ngIf="!isLogin" id="viev">
 <button class="button" onclick="document.getElementById('id01').style.display='block'">Login</button>
   <p>Dont have an account?</p>
   <button class="button" onclick="document.getElementById('id02').style.display='block'">Register</button>
