@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from "./app.service";
-import {HttpClient} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
 
   }
 
-  constructor(private appService: AppService,private http: HttpClient) {
+  constructor(private appService: AppService) {
     this.products = [];
 
   }
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
     this.appService.loginApi(payload).subscribe((response: any) => {
       this.token = response.token;
       this.userId = response.userId;
-      this.basketId = '8';
+      this.basketId = response.basketId;
 
       console.log(this.basketId)
 
@@ -48,20 +48,28 @@ export class AppComponent implements OnInit{
 
   }
 
-  addProduct() {
-    this.appService.addProduct(this.token).subscribe((response: any) => {
+   getReceipt() {
+    this.appService.getReceipt(this.token,this.basketId).subscribe((response: any) => {
+      console.log(response);
+      this.receipt = response;
+      console.log(this.receipt);
+    })
+  }
+
+  addProduct(productName: string) {
+    this.appService.addProduct(this.token, productName, this.basketId ).subscribe((response: any) => {
       console.log(response);
       this.basket = response;
       console.log(this.basket);
     })
   }
 
-   getReceipt() {
-    this.appService.getReceipt(this.token).subscribe((response: any) => {
+  singUp() {
+   this.appService.singUp(this.username, this.password).subscribe((response: any) => {
       console.log(response);
-      this.receipt = response;
-      console.log(this.receipt);
-    })
+      this.user = response;
+      console.log(this.user);
+   });
   }
 }
 

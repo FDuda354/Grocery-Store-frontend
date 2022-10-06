@@ -22,34 +22,26 @@ export class AppService {
   }
 
 
-
-  getBasketId(token: string, userId: string): Observable<User>{
-    this.header = this.header.set('Authorization', 'Bearer ' + token);
-    console.log(token);
-    return this.http.get<User>('http://localhost:8080/users/?id='+userId, {'headers': this.header});
-
-  }
-
-
-  addProduct(token: string): Observable<Basket> {
+  getReceipt(token: string,basketId: string): Observable<Receipt> {
     this.header = this.header.set('Authorization', 'Bearer ' + token);
     console.log(token);
 
-    return this.http.post<Basket>('http://localhost:8080/shop/product?basketId=8&name=Bread', {'headers': this.header});
-  }
-///asd
+    return this.http.get<Receipt>('http://localhost:8080/shop/receipt?basketId='+basketId, {'headers': this.header});
 
-  getReceipt(token: string): Observable<Receipt> {
+  }
+
+
+  addProduct(token: string, productName: string, basketId: string): Observable<Basket> {
     this.header = this.header.set('Authorization', 'Bearer ' + token);
     console.log(token);
 
-    return this.http.get<Receipt>('http://localhost:8080/shop/receipt?basketId=8', {'headers': this.header});
+    return this.http.post<Basket>('http://localhost:8080/shop/product?basketId=' + basketId + '&name=' + productName ,null, {'headers': this.header});
 
   }
 
-  addProductTest( token: string) {
-    return this.http.post('http://localhost:8080/shop/product?basketId=8&name=Bread', {'headers': this.header});
+  singUp(username: string, password: string) {
+return this.http.post('http://localhost:8080/users', {username: username, password: password});
+
+
   }
-
-
 }

@@ -9,13 +9,13 @@
   <input type="text" id="fname" name="fname" [(ngModel)]="username"><br>
   <label for="lname">password:</label><br>
   <input type="password" id="lname" name="lname" [(ngModel)]="password"><br><br>
-
-  <button (click)="login()"> login</button>
-  <button (click)="addProduct()"> apple</button>
-  <button (click)="getReceipt()"> getreceipt</button>
-  {{basketId}}
-  {{userId}}
 </form>
+<button (click)="login()"> login</button>
+<button (click)="singUp()"> Sing Up</button>
+<br><br>
+<button (click)="addProduct('Apple')"> apple</button>
+<button (click)="getReceipt()"> getreceipt</button>
+
 <table class="table table-striped">
   <thead>
     <tr>
