@@ -127,7 +127,6 @@
       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
       padding-top: 60px;
 
-
     }
     #viev
     {
@@ -251,7 +250,7 @@
   </form>
 </div>
 <div *ngIf="isLogin" class="table">
-  <h2>Welcome back {{username}}</h2>
+  <h2>Welcome Back {{username}}</h2>
   <h3>Add product to your basket</h3>
   <br>
   <button class="productButton" (click)="addProduct('Apple')"> Apple</button>
@@ -272,6 +271,7 @@
   <button class="productButton" (click)="addProduct('Cereals')"> Cereals</button>
   <br><br><br>
   <button class="receiptButton" (click)="getReceipt()"> Receipt</button>
+  <button class="receiptButton" (click)="clearProduct()"> Clear</button>
 </div>
   <div *ngIf="isLogin && showProducts" id="products" >
     <h2>Products</h2>
@@ -300,6 +300,16 @@
       <td>{{element.quantity.toString()}}</td>
       <td>{{element.totalPrice.toString()}}</td>
   </table>
+  <p>discounts</p>
+  <table >
+    <tr>
+      <th style="text-align: left">Discounts</th>
+    </tr>
+    <tr *ngFor="let element of discounts">
+      <td style="text-align: left">{{element}}</td>
+    </tr>
+  </table>
+  <p style="text-align: left"><strong>Total price:</strong> {{totalPrice}}</p>
 </div>
 </div>
 

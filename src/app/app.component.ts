@@ -15,7 +15,6 @@ export class AppComponent implements OnInit{
   userId = '';
   token = '';
   user: User | undefined;
-  basket: Basket | undefined;
   products: Product[];
   receipt: Receipt | undefined;
   isLogin = false;
@@ -23,6 +22,8 @@ export class AppComponent implements OnInit{
   email = '';
   entries: Entry[];
   showProducts = true;
+  discounts = [];
+  totalPrice = '';
 
   ngOnInit(): void  {
 
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit{
   constructor(private appService: AppService) {
     this.products = [];
     this.entries = [];
+
 
   }
 
@@ -58,6 +60,8 @@ export class AppComponent implements OnInit{
    getReceipt() {
     this.appService.getReceipt(this.token,this.basketId).subscribe((response: any) => {
       this.entries = response.entries;
+      this.discounts = response.discounts;
+      this.totalPrice = response.totalPrice.toString();
       console.log(this.entries);
       console.log(this.receipt);
       this.showReceipt = true;
@@ -103,7 +107,19 @@ export class AppComponent implements OnInit{
 
     })
   }
+
+  clearProduct() {
+    this.appService.getReceipt(this.token,this.basketId).subscribe((response: any) => {
+
+    });
+    this.showReceipt = false;
+    this.products = [];
+    this.showProducts = true;
+    console.log(this.showReceipt)
+
+  }
 }
+
 
 
 export interface Entry {
