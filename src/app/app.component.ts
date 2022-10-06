@@ -18,7 +18,11 @@ export class AppComponent implements OnInit{
   basket: Basket | undefined;
   products: Product[];
   receipt: Receipt | undefined;
-
+  isLogin = false;
+  showReceipt = false;
+  email = '';
+  entries: Entry[];
+  showProducts = true;
 
   ngOnInit(): void  {
 
@@ -26,6 +30,7 @@ export class AppComponent implements OnInit{
 
   constructor(private appService: AppService) {
     this.products = [];
+    this.entries = [];
 
   }
 
@@ -36,11 +41,13 @@ export class AppComponent implements OnInit{
         username : this.username,
         password : this.password
       }
-
+    if(this.username != '' && this.password != '')
     this.appService.loginApi(payload).subscribe((response: any) => {
       this.token = response.token;
       this.userId = response.userId;
       this.basketId = response.basketId;
+      this.isLogin = true;
+      this.showProducts = true;
 
       console.log(this.basketId)
 
@@ -50,26 +57,51 @@ export class AppComponent implements OnInit{
 
    getReceipt() {
     this.appService.getReceipt(this.token,this.basketId).subscribe((response: any) => {
-      console.log(response);
-      this.receipt = response;
+      this.entries = response.entries;
+      console.log(this.entries);
       console.log(this.receipt);
+      this.showReceipt = true;
+      this.showProducts = false;
     })
   }
 
   addProduct(productName: string) {
     this.appService.addProduct(this.token, productName, this.basketId ).subscribe((response: any) => {
+      this.products = response.products;
       console.log(response);
-      this.basket = response;
-      console.log(this.basket);
+
     })
   }
 
-  singUp() {
-   this.appService.singUp(this.username, this.password).subscribe((response: any) => {
-      console.log(response);
-      this.user = response;
-      console.log(this.user);
-   });
+
+  logOut() {
+    this.isLogin = false;
+    this.showReceipt = false;
+    this.showProducts = false;
+    this.token = '';
+    this.userId = '';
+    this.basketId = '';
+    this.username = '';
+    this.password = '';
+    this.email = '';
+    this.products = [];
+  }
+
+  register() {
+    let payload =
+      {
+        username : this.username,
+        password : this.password,
+        email: this.email,
+        accountNonExpired:true,
+        accountNonLocked:true,
+        credentialsNonExpired:true,
+        enabled:true
+      }
+    if(this.username != '' && this.password != '' && this.email != '')
+    this.appService.registerApi(payload).subscribe((response: any) => {
+
+    })
   }
 }
 

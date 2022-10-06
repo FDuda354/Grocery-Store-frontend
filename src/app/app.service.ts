@@ -39,9 +39,7 @@ export class AppService {
 
   }
 
-  singUp(username: string, password: string) {
-return this.http.post('http://localhost:8080/users', {username: username, password: password});
-
-
+  registerApi(payload: { password: string; credentialsNonExpired: boolean; accountNonExpired: boolean; email: string; enabled: boolean; username: string; accountNonLocked: boolean }) {
+    return this.http.post('http://localhost:8080/users/register', payload)
   }
 }
