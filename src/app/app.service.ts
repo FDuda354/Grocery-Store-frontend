@@ -18,7 +18,7 @@ export class AppService {
   }
 
   loginApi(payload: any) {
-    return this.http.post('http://localhost:8080/users/login', payload)
+    return this.http.post('http://dudios.alwaysdata.net/users/login', payload)
   }
 
 
@@ -26,7 +26,7 @@ export class AppService {
     this.header = this.header.set('Authorization', 'Bearer ' + token);
     console.log(token);
 
-    return this.http.get<Receipt>('http://localhost:8080/shop/receipt?basketId='+basketId, {'headers': this.header});
+    return this.http.get<Receipt>('http://dudios.alwaysdata.net/shop/receipt?basketId='+basketId, {'headers': this.header});
 
   }
 
@@ -35,11 +35,11 @@ export class AppService {
     this.header = this.header.set('Authorization', 'Bearer ' + token);
     console.log(token);
 
-    return this.http.post<Basket>('http://localhost:8080/shop/product?basketId=' + basketId + '&name=' + productName ,null, {'headers': this.header});
+    return this.http.post<Basket>('http://dudios.alwaysdata.net/shop/product?basketId=' + basketId + '&name=' + productName ,null, {'headers': this.header});
 
   }
 
   registerApi(payload: { password: string; credentialsNonExpired: boolean; accountNonExpired: boolean; email: string; enabled: boolean; username: string; accountNonLocked: boolean }) {
-    return this.http.post('http://localhost:8080/users/register', payload)
+    return this.http.post('http://dudios.alwaysdata.net/users/register', payload)
   }
 }
