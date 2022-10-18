@@ -1,27 +1,123 @@
 # GroceryStoreFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+<h2> You can try it on docker </h2>
+docker run -d -it -p 8081:80/tcp --name grocery-store-frontend needxmafia/grocery-store-frontend:latest
 
-## Development server
+<h2>Project Stucture</h2>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![alwaysdata logo](https://user-images.githubusercontent.com/92389794/195980186-7c05de94-ffe1-41ee-8bcf-35acbb6a9e52.png)
 
-## Code scaffolding
+https://www.alwaysdata.com
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![projet structure](https://user-images.githubusercontent.com/92389794/195984459-c3c2f7df-1beb-402b-bd1d-36f75ccc2481.png)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Main project: store management.
+Technology i used:
+- Spring jpa
+- Spring security
+- REST API
+- MySQL
+- Docker
+- Always data
+- Lombok
+- JWT
 
-## Running unit tests
+This API allows you to manage your store
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<h3>Database</h3>
+<h4>MySQL</h4>
 
-## Running end-to-end tests
+Database diagram
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![db diagram](https://user-images.githubusercontent.com/92389794/195979591-67ab7a01-f910-45fe-ab67-602ed3cf9f20.png)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+AppUsers Table
+
+<img width="915" alt="U" src="https://user-images.githubusercontent.com/92389794/195979837-666ab354-8cda-47d5-8813-614d3fe2fa68.png">
+
+Baskets Table
+
+<img width="189" alt="B" src="https://user-images.githubusercontent.com/92389794/195979848-1d849d35-ec1d-43bd-895a-f63108ce9e33.png">
+
+Product_DB Table
+
+<img width="346" alt="PDB" src="https://user-images.githubusercontent.com/92389794/195979870-b23454b8-10f4-4bb6-a3d1-70bdb07efcc6.png">
+
+PurchasedProducts_Baskets Table
+
+<img width="283" alt="PP_B" src="https://user-images.githubusercontent.com/92389794/195979880-4c2ff9b6-b1e8-4749-b786-b354fa88d5ca.png">
+
+The database is hosted on the AlwaysData server
+
+![alwaysdata logo](https://user-images.githubusercontent.com/92389794/195980186-7c05de94-ffe1-41ee-8bcf-35acbb6a9e52.png)
+
+https://www.alwaysdata.com
+
+<h3>REST API</h3>
+
+<h3>Endpoints</h3>
+
+<h4>Role_USER: Endpoints:</h4>
+
+#Registration:
+
+![registration](https://user-images.githubusercontent.com/92389794/195980883-1ce83917-f166-4c6d-afb0-69eb8f1e6bfe.png)
+
+#Login:
+
+![login](https://user-images.githubusercontent.com/92389794/195980951-3a3a3652-abd6-4a5b-8f29-fbeb93311bfb.png)
+
+#UpdateData
+
+![put](https://user-images.githubusercontent.com/92389794/195981758-fc161bb5-e177-4f98-b3c3-4a573d07a37c.png)
+
+#AddProductToBasket
+
+![addPtobasket](https://user-images.githubusercontent.com/92389794/195981660-137860b1-b7be-4018-89da-8d422460e5cd.png)
+
+#RemoveProductFromBasket
+
+![remove](https://user-images.githubusercontent.com/92389794/195981922-c0907b83-623f-4336-ab1c-c30815ffca46.png)
+
+#GetReceipt
+
+![receipt](https://user-images.githubusercontent.com/92389794/195981802-d8769c88-2830-4947-972b-d1256f77f0ae.png)
+
+<h4>Role_ADMIN: Endpoints:</h4>
+
+#GetAllUsers
+
+![getallusers](https://user-images.githubusercontent.com/92389794/195982990-e317a5bf-6225-4bef-a2e0-98222054a3c2.png)
+
+#AddProductToDb
+
+![add product to db](https://user-images.githubusercontent.com/92389794/195983009-43149074-73ce-4ae1-aa35-c78e3f8dcc59.png)
+
+#DeleteUser
+
+![deleteuser](https://user-images.githubusercontent.com/92389794/195983030-bc81f943-4019-45d1-89a1-84997b607c6c.png)
+
+
+#ResetApp
+<br>
+this method delete all users and remove all products from all baskets
+
+![re](https://user-images.githubusercontent.com/92389794/195983085-e80fcede-3486-4eda-9208-6486d778e4e6.png)
+
+<h3>Roles_permissions</h3>
+
+<img width="802" alt="security" src="https://user-images.githubusercontent.com/92389794/195983200-41285a67-87b5-4a3a-863f-82b7eae156ea.png">
+
+The REST API is olso hosted on the AlwaysData server
+
+![alwaysdata logo](https://user-images.githubusercontent.com/92389794/195980186-7c05de94-ffe1-41ee-8bcf-35acbb6a9e52.png)
+
+https://www.alwaysdata.com
+
+<h3>JWT</h3>
+
+Each user who logs in will get a token using the getJWT method which assigns him the appropriate role and encrypts it with the HMAC256 algorithm. 
+Each HTTP query goes through the JWT filter class. which checks if the header contains "Authorization" and is not null.
+Then it reads the permissions that can be found in the Authorization header
