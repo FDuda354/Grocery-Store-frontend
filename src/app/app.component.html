@@ -7,12 +7,12 @@
 
 </head>
 <body>
-<div id = "kontener">
+<div id = "contener">
 <h2 style="text-align: center">Welcome to Grocery Store</h2>
 
 
 <!-- Button to open the modal login form -->
-<div *ngIf="!isLogin" id="viev">
+<div *ngIf="!isLogin" class="viev">
 <button class="button" onclick="document.getElementById('id01').style.display='block'">Login</button>
   <p>Dont have an account?</p>
   <button class="button" onclick="document.getElementById('id02').style.display='block'">Register</button>
@@ -23,7 +23,7 @@
 </div>
 
 <!-- The Modal -->
-<div id="id01" class="modal">
+<div id="id01" class="login">
   <span onclick="document.getElementById('id01').style.display='none'"
         class="close" title="Close Modal">&times;</span>
 
@@ -43,7 +43,7 @@
     </div>
   </form>
 </div>
-<div id="id02" class="modal">
+<div id="id02" class="login">
   <span onclick="document.getElementById('id02').style.display='none'"
         class="close" title="Close Modal">&times;</span>
 
@@ -57,7 +57,7 @@
       <input type="password" id="npsw" placeholder="Enter Password" name="npsw" [(ngModel)]="password" required>
 
       <label for="nemail"><b>Email</b></label>
-      <input type="text" id="nemail" placeholder="Enter Password" name="nemail" [(ngModel)]="email" required>
+      <input type="text" id="nemail" placeholder="Enter Email" name="nemail" [(ngModel)]="email" required>
 
 
       <button onclick="document.getElementById('id02').style.display='none'" (click)="register()" class="loginbtn"> Register</button>
@@ -91,7 +91,7 @@
   <button class="receiptButton" (click)="getReceipt()"> Receipt</button>
   <button class="receiptButton" (click)="clearProduct()"> Clear</button>
 </div>
-  <div *ngIf="isLogin && showProducts" id="products" >
+  <div *ngIf="isLogin && showProducts" class="productsTable" >
     <h2>Products</h2>
     <table >
       <tr>
