@@ -10,9 +10,46 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-#contener
-{
+#contener {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+#dashboard {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#dashboard h2 {
+  text-align: center;
+}
+
+#interface,
+#informations {
+  flex-basis: 40%;
+}
+
+#interface .productsButtons {
+  max-width: 500px;
+  margin-bottom: 25px;
+}
+
+#informations #products {
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+}
+
+#informations table {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#informations td {
+  text-align: center;
 }
 /* Set a style for all buttons */
 .button {
@@ -187,4 +224,5 @@ span.psw {
   .cancelbtn {
     width: 100%;
   }
+
 }

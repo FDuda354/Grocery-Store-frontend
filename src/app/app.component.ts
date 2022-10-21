@@ -7,7 +7,7 @@ import {AppService} from "./app.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'Grocery-Store-frontend';
   username = '';
   password = '';
@@ -25,9 +25,6 @@ export class AppComponent implements OnInit{
   discounts = [];
   totalPrice = '';
 
-  ngOnInit(): void  {
-
-  }
 
   constructor(private appService: AppService) {
     this.products = [];

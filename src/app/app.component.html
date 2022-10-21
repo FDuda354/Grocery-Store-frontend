@@ -1,135 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Grocery Store</title>
-  <link rel="stylesheet" href="./app.component.css">
-
+  <meta charset="utf-8" />
+  <title>Grocery Store</title>
+  <link rel="stylesheet" href="./app.component.css" />
 </head>
 <body>
-<div id = "contener">
-<h2 style="text-align: center">Welcome to Grocery Store</h2>
+<div id="contener">
+  <h2 style="text-align: center">Welcome to Grocery Store</h2>
 
-
-<!-- Button to open the modal login form -->
-<div *ngIf="!isLogin" class="viev">
-<button class="button" onclick="document.getElementById('id01').style.display='block'">Login</button>
-  <p>Dont have an account?</p>
-  <button class="button" onclick="document.getElementById('id02').style.display='block'">Register</button>
-
-</div>
-<div *ngIf="isLogin">
-  <button class="button" (click)="logOut()">Log out</button>
-</div>
-
-<!-- The Modal -->
-<div id="id01" class="login">
-  <span onclick="document.getElementById('id01').style.display='none'"
-        class="close" title="Close Modal">&times;</span>
-
-  <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="container">
-      <label for="fname"><b>Username</b></label>
-      <input type="text" id="fname" placeholder="Enter Username" name="fname" [(ngModel)]="username" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" id="psw" placeholder="Enter Password" name="psw" [(ngModel)]="password" required>
-
-      <button onclick="document.getElementById('id01').style.display='none'" (click)="login()" class="loginbtn"> Login</button>
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-
-
-    </div>
-  </form>
-</div>
-<div id="id02" class="login">
-  <span onclick="document.getElementById('id02').style.display='none'"
-        class="close" title="Close Modal">&times;</span>
-
-  <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="container">
-      <label for="nname"><b>Username</b></label>
-      <input type="text" id="nname" placeholder="Enter Username" name="nname" [(ngModel)]="username" required>
-
-      <label for="npsw"><b>Password</b></label>
-      <input type="password" id="npsw" placeholder="Enter Password" name="npsw" [(ngModel)]="password" required>
-
-      <label for="nemail"><b>Email</b></label>
-      <input type="text" id="nemail" placeholder="Enter Email" name="nemail" [(ngModel)]="email" required>
-
-
-      <button onclick="document.getElementById('id02').style.display='none'" (click)="register()" class="loginbtn"> Register</button>
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-
-
-    </div>
-  </form>
-</div>
-<div *ngIf="isLogin" class="table">
-  <h2>Welcome Back {{username}}</h2>
-  <h3>Add product to your basket</h3>
-  <br>
-  <button class="productButton" (click)="addProduct('Apple')"> Apple</button>
-  <button class="productButton" (click)="addProduct('Orange')"> Orange</button>
-  <button class="productButton" (click)="addProduct('Banana')"> Banana</button>
-  <button class="productButton" (click)="addProduct('Potato')"> Potato</button>
-  <br>
-  <button class="productButton" (click)="addProduct('Tomato')"> Tomato</button>
-  <button class="productButton" (click)="addProduct('Onion')"> Onion</button>
-  <button class="productButton" (click)="addProduct('Milk')"> Milk</button>
-  <button class="productButton" (click)="addProduct('Cheese')"> Cheese</button>
-  <br>
-  <button class="productButton" (click)="addProduct('Butter')"> Butter</button>
-  <button class="productButton" (click)="addProduct('Pork')"> Pork</button>
-  <button class="productButton" (click)="addProduct('Steak')"> Steak</button>
-  <button class="productButton" (click)="addProduct('Bread')"> Bread</button>
-  <br>
-  <button class="productButton" (click)="addProduct('Cereals')"> Cereals</button>
-  <br><br><br>
-  <button class="receiptButton" (click)="getReceipt()"> Receipt</button>
-  <button class="receiptButton" (click)="clearProduct()"> Clear</button>
-</div>
-  <div *ngIf="isLogin && showProducts" class="productsTable" >
-    <h2>Products</h2>
-    <table >
-      <tr>
-        <th>Product</th>
-        <th>type</th>
-        <th>Price</th>
-      </tr>
-      <tr *ngFor="let element of products">
-        <td>{{element.name}}</td>
-        <td>{{element.type}}</td>
-        <td>{{element.price.toString()}}</td>
-    </table>
+  <!-- Button to open the modal login form -->
+  <div *ngIf="!isLogin" class="viev">
+    <button class="button" onclick="document.getElementById('id01').style.display='block'">Login</button>
+    <p>Dont have an account?</p>
+    <button class="button" onclick="document.getElementById('id02').style.display='block'">Register</button>
   </div>
-<div *ngIf="showReceipt && isLogin" class="receiptTable" >
-  <h2>Receipt</h2>
-  <table >
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>TotalPrice</th>
-    </tr>
-    <tr *ngFor="let element of entries">
-      <td>{{element.product.name}}</td>
-      <td>{{element.quantity.toString()}}</td>
-      <td>{{element.totalPrice.toString()}}</td>
-  </table>
-  <table >
-    <tr>
-      <th style="text-align: left">Discounts</th>
-    </tr>
-    <tr *ngFor="let element of discounts">
-      <td style="text-align: left">{{element}}</td>
-    </tr>
-  </table>
-  <p style="text-align: left"><strong>Total price:</strong> {{totalPrice}}</p>
-</div>
-</div>
+  <div *ngIf="isLogin">
+    <button class="button" (click)="logOut()">Log out</button>
+  </div>
 
+  <!-- The Modal -->
+  <div id="id01" class="login">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal"
+            >&times;</span
+            >
+
+    <!-- Modal Content -->
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="container">
+        <label for="fname"><b>Username</b></label>
+        <input
+          type="text"
+          id="fname"
+          placeholder="Enter Username"
+          name="fname"
+          [(ngModel)]="username"
+          required
+        />
+
+        <label for="psw"><b>Password</b></label>
+        <input
+          type="password"
+          id="psw"
+          placeholder="Enter Password"
+          name="psw"
+          [(ngModel)]="password"
+          required
+        />
+
+        <button
+          onclick="document.getElementById('id01').style.display='none'"
+          (click)="login()"
+          class="loginbtn"
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          onclick="document.getElementById('id01').style.display='none'"
+          class="cancelbtn"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  <div id="id02" class="login">
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal"
+            >&times;</span
+            >
+
+    <!-- Modal Content -->
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="container">
+        <label for="nname"><b>Username</b></label>
+        <input
+          type="text"
+          id="nname"
+          placeholder="Enter Username"
+          name="nname"
+          [(ngModel)]="username"
+          required
+        />
+
+        <label for="npsw"><b>Password</b></label>
+        <input
+          type="password"
+          id="npsw"
+          placeholder="Enter Password"
+          name="npsw"
+          [(ngModel)]="password"
+          required
+        />
+
+        <label for="nemail"><b>Email</b></label>
+        <input type="text" id="nemail" placeholder="Enter Email" name="nemail" [(ngModel)]="email" required />
+
+        <button
+          onclick="document.getElementById('id02').style.display='none'"
+          (click)="register()"
+          class="loginbtn"
+        >
+          Register
+        </button>
+        <button
+          type="button"
+          onclick="document.getElementById('id02').style.display='none'"
+          class="cancelbtn"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  <div id="dashboard">
+    <div id="interface" *ngIf="isLogin" class="table">
+      <h2>Welcome Back {{username}}</h2>
+      <h3>Add product to your basket</h3>
+      <div class="productsButtons">
+        <button class="productButton" (click)="addProduct('Apple')">Apple</button>
+        <button class="productButton" (click)="addProduct('Orange')">Orange</button>
+        <button class="productButton" (click)="addProduct('Banana')">Banana</button>
+        <button class="productButton" (click)="addProduct('Potato')">Potato</button>
+        <button class="productButton" (click)="addProduct('Tomato')">Tomato</button>
+        <button class="productButton" (click)="addProduct('Onion')">Onion</button>
+        <button class="productButton" (click)="addProduct('Milk')">Milk</button>
+        <button class="productButton" (click)="addProduct('Cheese')">Cheese</button>
+        <button class="productButton" (click)="addProduct('Butter')">Butter</button>
+        <button class="productButton" (click)="addProduct('Pork')">Pork</button>
+        <button class="productButton" (click)="addProduct('Steak')">Steak</button>
+        <button class="productButton" (click)="addProduct('Bread')">Bread</button>
+        <button class="productButton" (click)="addProduct('Cereals')">Cereals</button>
+      </div>
+      <div class="functionButtons">
+        <button class="receiptButton" (click)="getReceipt()">Receipt</button>
+        <button class="receiptButton" (click)="clearProduct()">Clear</button>
+      </div>
+    </div>
+    <div id="informations">
+      <div *ngIf="isLogin && showProducts" class="productsTable">
+        <h2>Products</h2>
+        <table>
+          <tr>
+            <th>Product</th>
+            <th>type</th>
+            <th>Price</th>
+          </tr>
+          <tr *ngFor="let element of products">
+            <td>{{element.name}}</td>
+            <td>{{element.type}}</td>
+            <td>{{element.price.toString()}}</td>
+          </tr>
+        </table>
+      </div>
+      <div *ngIf="showReceipt && isLogin" class="receiptTable">
+        <h2>Receipt</h2>
+        <table>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>TotalPrice</th>
+          </tr>
+          <tr *ngFor="let element of entries">
+            <td>{{element.product.name}}</td>
+            <td>{{element.quantity.toString()}}</td>
+            <td>{{element.totalPrice.toString()}}</td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th style="text-align: left">Discounts</th>
+          </tr>
+          <tr *ngFor="let element of discounts">
+            <td style="text-align: left">{{element}}</td>
+          </tr>
+        </table>
+        <p style="text-align: left"><strong>Total price:</strong> {{totalPrice}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
-
