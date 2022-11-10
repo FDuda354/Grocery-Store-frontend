@@ -1,15 +1,23 @@
-# GroceryStoreFrontend
+# GroceryStoreBacked
 
-<h2> You can try it on docker </h2>
+<h2> Try it! </h2>
+https://grocerystore-fduda354.koyeb.app
+
+<h2> Or you can try it on docker </h2>
 docker run -d -it -p 8081:80/tcp --name grocery-store-frontend needxmafia/grocery-store-frontend:latest
 
 <h2>Project Stucture</h2>
 
-![alwaysdata logo](https://user-images.githubusercontent.com/92389794/195980186-7c05de94-ffe1-41ee-8bcf-35acbb6a9e52.png)
+<img width="127" alt="Zrzut ekranu 2022-11-10 o 11 07 14" src="https://user-images.githubusercontent.com/92389794/201063059-6eb57b54-6085-4228-8ffd-fb645ef884dd.png">
 
-https://www.alwaysdata.com
+https://www.koyeb.com
 
-![projet structure](https://user-images.githubusercontent.com/92389794/195984459-c3c2f7df-1beb-402b-bd1d-36f75ccc2481.png)
+
+https://azure.microsoft.com/pl-pl/
+
+![Zrzut ekranu 2022-11-10 o 18 14 28](https://user-images.githubusercontent.com/92389794/201162712-63b8fa0b-6b52-47d5-b2fa-0c808f167e5e.png)
+
+
 
 
 Main project: store management.
@@ -20,13 +28,14 @@ Technology i used:
 - MySQL
 - Docker
 - Always data
+- CI/CD
 - Lombok
 - JWT
 
 This API allows you to manage your store
 
 <h3>Database</h3>
-<h4>MySQL</h4>
+<h4>PostgreSQL</h4>
 
 Database diagram
 
@@ -49,11 +58,6 @@ PurchasedProducts_Baskets Table
 
 <img width="283" alt="PP_B" src="https://user-images.githubusercontent.com/92389794/195979880-4c2ff9b6-b1e8-4749-b786-b354fa88d5ca.png">
 
-The database is hosted on the AlwaysData server
-
-![alwaysdata logo](https://user-images.githubusercontent.com/92389794/195980186-7c05de94-ffe1-41ee-8bcf-35acbb6a9e52.png)
-
-https://www.alwaysdata.com
 
 <h3>REST API</h3>
 
@@ -110,14 +114,10 @@ this method delete all users and remove all products from all baskets
 
 <img width="802" alt="security" src="https://user-images.githubusercontent.com/92389794/195983200-41285a67-87b5-4a3a-863f-82b7eae156ea.png">
 
-The REST API is olso hosted on the AlwaysData server
-
-![alwaysdata logo](https://user-images.githubusercontent.com/92389794/195980186-7c05de94-ffe1-41ee-8bcf-35acbb6a9e52.png)
-
-https://www.alwaysdata.com
 
 <h3>JWT</h3>
 
 Each user who logs in will get a token using the getJWT method which assigns him the appropriate role and encrypts it with the HMAC256 algorithm. 
 Each HTTP query goes through the JWT filter class. which checks if the header contains "Authorization" and is not null.
 Then it reads the permissions that can be found in the Authorization header
+
