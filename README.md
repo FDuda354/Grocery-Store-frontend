@@ -1,15 +1,10 @@
 # GroceryStoreBacked
 
-
-<h2>try it on docker </h2>
-docker run -d -it -p 8081:80/tcp --name grocery-store-frontend needxmafia/grocery-store-frontend:latest
-
 <h2>Project Stucture</h2>
 
 <img width="127" alt="Zrzut ekranu 2022-11-10 o 11 07 14" src="https://user-images.githubusercontent.com/92389794/201063059-6eb57b54-6085-4228-8ffd-fb645ef884dd.png">
 
 https://www.koyeb.com
-
 
 https://azure.microsoft.com/pl-pl/
 
