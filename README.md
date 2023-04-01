@@ -1,9 +1,7 @@
 # GroceryStoreBacked
 
-<h2> Try it! </h2>
-https://grocerystore-fduda354.koyeb.app
 
-<h2> Or you can try it on docker </h2>
+<h2>try it on docker </h2>
 docker run -d -it -p 8081:80/tcp --name grocery-store-frontend needxmafia/grocery-store-frontend:latest
 
 <h2>Project Stucture</h2>
